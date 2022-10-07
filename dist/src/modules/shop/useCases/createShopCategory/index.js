@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createShopCategoryController = exports.createShopCategoryUseCase = void 0;
+const repos_1 = require("../../repos");
+const createShopCategoryController_1 = require("./createShopCategoryController");
+const createShopCategoryUseCase_1 = require("./createShopCategoryUseCase");
+const createShopCategoryUseCase = new createShopCategoryUseCase_1.CreateShopCategoryUseCase(repos_1.shopCategoryRepo);
+exports.createShopCategoryUseCase = createShopCategoryUseCase;
+const createShopCategoryController = new createShopCategoryController_1.CreateShopCategoryController(createShopCategoryUseCase);
+exports.createShopCategoryController = createShopCategoryController;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9zcmMvbW9kdWxlcy9zaG9wL3VzZUNhc2VzL2NyZWF0ZVNob3BDYXRlZ29yeS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSx1Q0FBK0M7QUFDL0MsaUZBQThFO0FBQzlFLDJFQUF3RTtBQUV4RSxNQUFNLHlCQUF5QixHQUFHLElBQUkscURBQXlCLENBQUMsd0JBQWdCLENBQUMsQ0FBQztBQUd6RSw4REFBeUI7QUFGbEMsTUFBTSw0QkFBNEIsR0FBRyxJQUFJLDJEQUE0QixDQUFDLHlCQUF5QixDQUFDLENBQUM7QUFFN0Qsb0VBQTRCIn0=

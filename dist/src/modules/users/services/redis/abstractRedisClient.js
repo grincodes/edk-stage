@@ -1,0 +1,52 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AbstractRedisClient = void 0;
+class AbstractRedisClient {
+    constructor(client) {
+        this.tokenExpiryTime = 600;
+        this.client = client;
+    }
+    async count(key) {
+        const allKeys = await this.getAllKeys(key);
+        return allKeys.length;
+    }
+    exists(key) {
+        return new Promise((resolve, reject) => {
+            return this.count(key)
+                .then((count) => {
+                return resolve(count >= 1 ? true : false);
+            })
+                .catch((err) => {
+                return reject(err);
+            });
+        });
+    }
+    getOne(key) {
+        return this.client.get(key);
+    }
+    getAllKeys(wildcard) {
+        return this.client.keys(wildcard);
+    }
+    async getAllKeyValue(wildcard) {
+        const results = await this.client.keys(wildcard);
+        const allResults = Promise.all(results.map(async (key) => {
+            const value = await this.getOne(key);
+            return { key, value };
+        }));
+        return allResults;
+    }
+    set(key, value) {
+        return this.client.set(key, value, { EX: this.tokenExpiryTime });
+    }
+    setTokenExpiryTime(time) {
+        this.tokenExpiryTime = time;
+    }
+    deleteOne(key) {
+        return this.client.del(key);
+    }
+    testConnection() {
+        return this.client.set("test", "connected");
+    }
+}
+exports.AbstractRedisClient = AbstractRedisClient;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWJzdHJhY3RSZWRpc0NsaWVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3NyYy9tb2R1bGVzL3VzZXJzL3NlcnZpY2VzL3JlZGlzL2Fic3RyYWN0UmVkaXNDbGllbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBRUEsTUFBc0IsbUJBQW1CO0lBSXZDLFlBQVksTUFBdUI7UUFIM0Isb0JBQWUsR0FBRyxHQUFHLENBQUE7UUFJM0IsSUFBSSxDQUFDLE1BQU0sR0FBRyxNQUFNLENBQUE7SUFDdEIsQ0FBQztJQUVNLEtBQUssQ0FBQyxLQUFLLENBQUMsR0FBVztRQUM1QixNQUFNLE9BQU8sR0FBRyxNQUFNLElBQUksQ0FBQyxVQUFVLENBQUMsR0FBRyxDQUFDLENBQUE7UUFDMUMsT0FBTyxPQUFPLENBQUMsTUFBTSxDQUFBO0lBQ3ZCLENBQUM7SUFFTSxNQUFNLENBQUMsR0FBVztRQUN2QixPQUFPLElBQUksT0FBTyxDQUFDLENBQUMsT0FBTyxFQUFFLE1BQU0sRUFBRSxFQUFFO1lBQ3JDLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUM7aUJBQ25CLElBQUksQ0FBQyxDQUFDLEtBQUssRUFBRSxFQUFFO2dCQUNkLE9BQU8sT0FBTyxDQUFDLEtBQUssSUFBSSxDQUFDLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsS0FBSyxDQUFDLENBQUE7WUFDM0MsQ0FBQyxDQUFDO2lCQUNELEtBQUssQ0FBQyxDQUFDLEdBQUcsRUFBRSxFQUFFO2dCQUNiLE9BQU8sTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFBO1lBQ3BCLENBQUMsQ0FBQyxDQUFBO1FBQ04sQ0FBQyxDQUFDLENBQUE7SUFDSixDQUFDO0lBRU0sTUFBTSxDQUFJLEdBQVc7UUFDMUIsT0FBTyxJQUFJLENBQUMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsQ0FBQTtJQUM3QixDQUFDO0lBRU0sVUFBVSxDQUFDLFFBQWdCO1FBQ2hDLE9BQU8sSUFBSSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLENBQUE7SUFDbkMsQ0FBQztJQUVNLEtBQUssQ0FBQyxjQUFjLENBQUMsUUFBZ0I7UUFDMUMsTUFBTSxPQUFPLEdBQUcsTUFBTSxJQUFJLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQTtRQUNoRCxNQUFNLFVBQVUsR0FBRyxPQUFPLENBQUMsR0FBRyxDQUM1QixPQUFPLENBQUMsR0FBRyxDQUFDLEtBQUssRUFBRSxHQUFHLEVBQUUsRUFBRTtZQUN4QixNQUFNLEtBQUssR0FBRyxNQUFNLElBQUksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUE7WUFDcEMsT0FBTyxFQUFFLEdBQUcsRUFBRSxLQUFLLEVBQUUsQ0FBQTtRQUN2QixDQUFDLENBQUMsQ0FDSCxDQUFBO1FBRUQsT0FBTyxVQUFVLENBQUE7SUFDbkIsQ0FBQztJQUVNLEdBQUcsQ0FBQyxHQUFXLEVBQUUsS0FBVTtRQUNoQyxPQUFPLElBQUksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLEdBQUcsRUFBRSxLQUFLLEVBQUUsRUFBRSxFQUFFLEVBQUUsSUFBSSxDQUFDLGVBQWUsRUFBRSxDQUFDLENBQUE7SUFDbEUsQ0FBQztJQUVNLGtCQUFrQixDQUFDLElBQVk7UUFDcEMsSUFBSSxDQUFDLGVBQWUsR0FBRyxJQUFJLENBQUE7SUFDN0IsQ0FBQztJQUVNLFNBQVMsQ0FBQyxHQUFXO1FBQzFCLE9BQU8sSUFBSSxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUE7SUFDN0IsQ0FBQztJQUVNLGNBQWM7UUFDbkIsT0FBTyxJQUFJLENBQUMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxNQUFNLEVBQUUsV0FBVyxDQUFDLENBQUE7SUFDN0MsQ0FBQztDQUNGO0FBNURELGtEQTREQyJ9

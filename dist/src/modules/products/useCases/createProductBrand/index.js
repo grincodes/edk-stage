@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProductBrandController = exports.createProductBrandUseCase = void 0;
+const repos_1 = require("../../repos");
+const createProductBrandController_1 = require("./createProductBrandController");
+const createProductBrandUseCase_1 = require("./createProductBrandUseCase");
+const createProductBrandUseCase = new createProductBrandUseCase_1.CreateProductBrandUseCase(repos_1.productBrandRepo);
+exports.createProductBrandUseCase = createProductBrandUseCase;
+const createProductBrandController = new createProductBrandController_1.CreateProductBrandController(createProductBrandUseCase);
+exports.createProductBrandController = createProductBrandController;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9zcmMvbW9kdWxlcy9wcm9kdWN0cy91c2VDYXNlcy9jcmVhdGVQcm9kdWN0QnJhbmQvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsdUNBQThDO0FBQzlDLGlGQUE2RTtBQUM3RSwyRUFBdUU7QUFFdkUsTUFBTSx5QkFBeUIsR0FBRyxJQUFJLHFEQUF5QixDQUFDLHdCQUFnQixDQUFDLENBQUE7QUFHeEUsOERBQXlCO0FBRmxDLE1BQU0sNEJBQTRCLEdBQUcsSUFBSSwyREFBNEIsQ0FBQyx5QkFBeUIsQ0FBQyxDQUFBO0FBRTVELG9FQUE0QiJ9

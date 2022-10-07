@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProductTypeController = exports.createProductTypeUseCase = void 0;
+const repos_1 = require("../../repos");
+const createProductTypeController_1 = require("./createProductTypeController");
+const createProductTypeUseCase_1 = require("./createProductTypeUseCase");
+const createProductTypeUseCase = new createProductTypeUseCase_1.CreateProductTypeUseCase(repos_1.productTypeRepo);
+exports.createProductTypeUseCase = createProductTypeUseCase;
+const createProductTypeController = new createProductTypeController_1.CreateProductTypeController(createProductTypeUseCase);
+exports.createProductTypeController = createProductTypeController;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9zcmMvbW9kdWxlcy9wcm9kdWN0cy91c2VDYXNlcy9jcmVhdGVQcm9kdWN0VHlwZS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSx1Q0FBOEM7QUFDOUMsK0VBQTRFO0FBQzVFLHlFQUFzRTtBQUV0RSxNQUFNLHdCQUF3QixHQUFHLElBQUksbURBQXdCLENBQUMsdUJBQWUsQ0FBQyxDQUFDO0FBR3RFLDREQUF3QjtBQUZqQyxNQUFNLDJCQUEyQixHQUFHLElBQUkseURBQTJCLENBQUMsd0JBQXdCLENBQUMsQ0FBQztBQUUzRCxrRUFBMkIifQ==

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAllShopCategoryController = exports.getAllShopCategoryUseCase = void 0;
+const repos_1 = require("../../repos");
+const getAllShopCategoryController_1 = require("./getAllShopCategoryController");
+const getAllShopCategoryUseCase_1 = require("./getAllShopCategoryUseCase");
+const getAllShopCategoryUseCase = new getAllShopCategoryUseCase_1.GetAllShopCategoryUseCase(repos_1.shopCategoryRepo);
+exports.getAllShopCategoryUseCase = getAllShopCategoryUseCase;
+const getAllShopCategoryController = new getAllShopCategoryController_1.GetAllShopCategoryController(getAllShopCategoryUseCase);
+exports.getAllShopCategoryController = getAllShopCategoryController;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9zcmMvbW9kdWxlcy9zaG9wL3VzZUNhc2VzL2dldEFsbFNob3BDYXRlZ29yeS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSx1Q0FBK0M7QUFDL0MsaUZBQThFO0FBQzlFLDJFQUF3RTtBQUV4RSxNQUFNLHlCQUF5QixHQUFHLElBQUkscURBQXlCLENBQUMsd0JBQWdCLENBQUMsQ0FBQztBQUd6RSw4REFBeUI7QUFGbEMsTUFBTSw0QkFBNEIsR0FBRyxJQUFJLDJEQUE0QixDQUFDLHlCQUF5QixDQUFDLENBQUM7QUFFN0Qsb0VBQTRCIn0=
